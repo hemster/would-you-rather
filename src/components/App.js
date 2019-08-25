@@ -1,7 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
+import { connect } from 'react-redux'
+import { handleInitialData } from '../actions/shared'
 
-class WouldYouRatherApp extends React.Component {
+class App extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(handleInitialData())
+  }
 
   render() {
     return (
@@ -25,4 +30,10 @@ class WouldYouRatherApp extends React.Component {
   }
 }
 
-export default WouldYouRatherApp;
+function mapStateToProps({ authedUser }) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App)
