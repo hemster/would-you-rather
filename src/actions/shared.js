@@ -10,7 +10,7 @@ export function handleInitialData() {
             getQuestions(),
             getUsers()
         ])
-        .then(([ users, questions ]) => {
+        .then(([questions, users ]) => {
             dispatch(receiveUsers(users))
             dispatch(receiveQuestions(questions))
             dispatch(hideLoading())
