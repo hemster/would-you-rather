@@ -47,10 +47,6 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ questions, authedUser, users }) {
-    console.warn('questions' + questions);
-    console.warn('authedUser' + authedUser)
-    console.warn('users' + users)
-
     return {
         unansweredQuestionIds: Object.keys(questions).filter(id => [...questions[id].optionOne.votes, ...questions[id].optionTwo.votes].includes(authedUser) === false),
         answeredQuestionIds: Object.keys(questions).filter(id => [...questions[id].optionOne.votes, ...questions[id].optionTwo.votes].includes(authedUser))

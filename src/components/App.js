@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 // import LoadingBar from 'react-redux-loading'
@@ -7,6 +7,7 @@ import Dashboard from './Dashboard';
 import Poll from "./Poll";
 import Nav from './Nav'
 import NewQuestion from "./NewQuestion";
+import LeaderBoard from "./LeaderBoard";
 
 class App extends React.Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ class App extends React.Component {
                 <Route path='/' exact component={Dashboard} />
                 <Route path='/poll/:id' component={Poll} />
                 <Route path='/new' component={NewQuestion} />
+                <Route path='/board' component={LeaderBoard} />
               </div>}
           </div>
         </Fragment>
