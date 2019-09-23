@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question';
+import { Redirect } from 'react-router-dom'
 
 class Dashboard extends Component {
     state = {
@@ -21,7 +22,11 @@ class Dashboard extends Component {
 
     render() {
         const { showUnanswered } = this.state;
-        const { unansweredQuestionIds, answeredQuestionIds } = this.props;
+        const { unansweredQuestionIds, answeredQuestionIds, isLoggedIn } = this.props;
+
+        if (!isLoggedIn) {
+            return <Redirect to='/login' />
+        }
 
         const questionIds = showUnanswered ? unansweredQuestionIds : answeredQuestionIds;
         return (
@@ -47,9 +52,11 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps({ questions, authedUser, users }) {
+    
     return {
         unansweredQuestionIds: Object.keys(questions).filter(id => [...questions[id].optionOne.votes, ...questions[id].optionTwo.votes].includes(authedUser) === false),
-        answeredQuestionIds: Object.keys(questions).filter(id => [...questions[id].optionOne.votes, ...questions[id].optionTwo.votes].includes(authedUser))
+        answeredQuestionIds: Object.keys(questions).filter(id => [...questions[id].optionOne.votes, ...questions[id].optionTwo.votes].includes(authedUser)),
+        isLoggedIn: authedUser !== null
     }
 }
 

@@ -17,7 +17,6 @@ export function handleInitialData() {
             dispatch(receiveUsers(users))
             dispatch(receiveQuestions(questions))
 
-            // debug
             let id = "johndoe";
             dispatch(setAuthedUser(id)); 
 

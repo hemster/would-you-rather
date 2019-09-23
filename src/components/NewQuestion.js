@@ -50,7 +50,7 @@ class NewQuestion extends Component {
         return (
             <div>
                 <h3 className='center'>Create New Question</h3>
-                <form className='new-tweet' onSubmit={this.handleSubmit}>
+                <form className='new-question' onSubmit={this.handleSubmit}>
                     <p>Complete the question:</p>
                     <h3>Would you rather...</h3>
                     <textarea

@@ -12,13 +12,13 @@ class BoardCard extends Component {
         } = user
 
         return (
-                <div className='tweet'>
+                <div className='question'>
                     <img
                         src={avatarURL}
                         alt={`Avatar of ${name}`}
                         className='avatar'
                     />
-                    <div className='tweet-info'>
+                    <div className='question-info'>
                         <h1>{name}</h1>
                         <h3>{`Answered questions ${answerCount}`}</h3>
                         <h3>{`Created questions ${createCount}`}</h3>

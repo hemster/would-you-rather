@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { logout } from '../actions/authedUser';
 
 class Nav extends Component {
+
+  handleLogout = () => {
+    this.props.dispatch(logout)
+  }
 
   render() {
     const { user } = this.props
@@ -38,7 +43,9 @@ class Nav extends Component {
           {user && 
             <li>
               <NavLink to='/login'>
-                Logout
+                <button onClick={this.handleLogout}>
+                  Logout
+                </button>
               </NavLink>
             </li>
             }
@@ -49,11 +56,10 @@ class Nav extends Component {
 }
 
 
-function mapStateToProps({ users, questions, authedUser }, props) {
-  const user = users[authedUser];
-
+function mapStateToProps({ users, authedUser }) {
+  console.log(authedUser)
   return {
-    user
+    user: authedUser === null ? null : users[authedUser]
   }
 }
 

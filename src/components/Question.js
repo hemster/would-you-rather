@@ -20,13 +20,13 @@ class Question extends Component {
 
         return (
             
-                <div className='tweet'>
+                <div className='question'>
                     <img
                         src={avatarURL}
                         alt={`Avatar of ${name}`}
                         className='avatar'
                     />
-                    <div className='tweet-info'>
+                    <div className='question-info'>
                         <h1>{name} asks:</h1>
                         <h3>Would you rather</h3>
                         <span>{optionOne.text}</span>

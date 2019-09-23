@@ -59,7 +59,7 @@ class Poll extends Component {
                 />
                 {hasAnswered === true
                     ? 
-                    <div className='new-tweet' >
+                    <div className='new-question' >
                         <h1>Asked by {name}:</h1>
                         <h2>Results</h2>
                         <label>
@@ -88,7 +88,7 @@ class Poll extends Component {
                         </label>
                     </div>
                      :
-                    <form className='new-tweet' onSubmit={this.handleSubmit}>
+                    <form className='new-question' onSubmit={this.handleSubmit}>
                         <h1>{name} asks:</h1>
                         <h3>Would you rather</h3>
                         <label>
