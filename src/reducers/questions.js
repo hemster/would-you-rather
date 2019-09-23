@@ -7,6 +7,11 @@ export default function tweets(state = {}, action) {
                 ...state,
                 ...action.questions
             }
+        case ADD_QUESTION:
+            return {
+                ...state,
+                [action.question.id]: action.question,
+            }
         default:
             return state
     }
