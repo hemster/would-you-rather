@@ -5,10 +5,11 @@ export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ANSWER_QUESTION = 'ANSWER_QUESTION'
 export const ADD_QUESTION = 'ADD_QUESTION'
 
-function addQuestion(question) {
+function addQuestion({authedUser, question}) {
     return {
         type: ADD_QUESTION,
         question,
+        authedUser
     }
 }
 
@@ -23,7 +24,7 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
             optionTwoText,
             author: authedUser
         })
-            .then((question) => dispatch(addQuestion(question)))
+            .then((question) => dispatch(addQuestion({authedUser, question})))
             .then(() => dispatch(hideLoading()))
     }
 }

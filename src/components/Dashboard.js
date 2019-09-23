@@ -31,7 +31,7 @@ class Dashboard extends Component {
                         Unanswered Question
                     </button>
                     <button className='btn' onClick={this.handleSelectAnswered}>
-                        Unanswered Question
+                        Answered Question
                     </button>
                 </div>
                 <ul className='dashboard-list'>

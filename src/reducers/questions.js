@@ -12,6 +12,21 @@ export default function tweets(state = {}, action) {
                 ...state,
                 [action.question.id]: action.question,
             }
+        case ANSWER_QUESTION: 
+            const { answer, qid, authedUser } = action
+            let selectedOption = state[qid][answer]
+            selectedOption = {
+                 ...state[qid][answer], 
+                votes: state[qid][answer].votes.concat([authedUser])
+            }
+
+            return {
+                ...state,
+                [qid]: {
+                    ...state[qid],
+                    [answer]: selectedOption
+                },
+            }
         default:
             return state
     }
