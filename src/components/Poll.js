@@ -145,7 +145,11 @@ function mapStateToProps({ users, questions, authedUser }, props) {
     const { question_id } = props.match.params
     const question = questions[question_id];
     if (question === undefined) {
-        return { question: null }
+        return { 
+            question: null,
+            isLoggedIn: authedUser !== null,
+            afterPath: `/questions/${question_id}`
+        }
     }
 
     const author = users[question.author];
