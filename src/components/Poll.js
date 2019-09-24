@@ -94,7 +94,7 @@ class Poll extends Component {
                      :
                     <form className='new-question' onSubmit={this.handleSubmit}>
                         <h1>{name} asks:</h1>
-                        <h3>Would you rather</h3>
+                        <h1>Would you rather</h1>
                         <label>
                             <input
                                 type="radio"
