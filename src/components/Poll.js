@@ -132,8 +132,11 @@ class Poll extends Component {
 function mapStateToProps({ users, questions, authedUser }, props) {
     const { question_id } = props.match.params
     const question = questions[question_id];
-    const author = users[question.author];
+    if (question === undefined) {
+        return { question: null }
+    }
 
+    const author = users[question.author];
     const votes = [...question.optionOne.votes, ...question.optionTwo.votes]
     const totalVotes = votes.length
     const hasAnswered = votes.includes(authedUser)
