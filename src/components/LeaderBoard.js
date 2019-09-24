@@ -5,10 +5,15 @@ import BoardCard from './BoardCard';
 
 class LeaderBoard extends Component {
     render() {
-        const { rank, isLoggedIn } = this.props;
+        const { rank, isLoggedIn, afterPath } = this.props;
 
         if (!isLoggedIn) {
-            return <Redirect to='/login' />
+            return <Redirect
+                to={{
+                    pathname: "/login",
+                    state: { afterPath: afterPath }
+                }}
+            />
         }
 
         return (
@@ -40,13 +45,14 @@ function mapStateToProps({ users, authedUser }) {
             avatarURL,
             answerCount,
             createCount,
-            totalScore
+            totalScore,
         }
     }).sort((a, b) => b.totalScore - a.totalScore);
 
     return {
         rank,
-        isLoggedIn: authedUser !== null
+        isLoggedIn: authedUser !== null,
+        afterPath: '/leaderboard'
     }
 }
 

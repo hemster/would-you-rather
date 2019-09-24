@@ -25,10 +25,14 @@ class LoginScreen extends Component {
 
     render() {
         const { selectedUserID, toHome } = this.state;
-        const { users } = this.props;
+        const { users, afterPath } = this.props
 
         if (toHome === true) {
-            return <Redirect to='/' />
+            if (afterPath !== null) {
+                return <Redirect to={afterPath} />
+            } else {
+                return <Redirect to='/' />
+            }
         }
 
         return (
@@ -48,10 +52,12 @@ class LoginScreen extends Component {
     }
 }
 
-function mapStateToProps({ authedUser, users }) {
+function mapStateToProps({ authedUser, users }, { location }) {
+    const afterPath = location && location.state && location.state.afterPath ? location.state.afterPath : null
     return {
         isLoggedIn: authedUser !== null,
-        users: Object.values(users)
+        users: Object.values(users),
+        afterPath: afterPath
     }
 }
 

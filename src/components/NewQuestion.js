@@ -31,10 +31,15 @@ class NewQuestion extends Component {
     render() {
         const { toHome, option1Text, option2Text } = this.state
 
-        const { isLoggedIn } = this.props;
+        const { isLoggedIn, afterPath } = this.props;
 
         if (!isLoggedIn) {
-            return <Redirect to='/login' />
+            return <Redirect
+                to={{
+                    pathname: "/login",
+                    state: { afterPath: afterPath }
+                }}
+            />
         }
 
         if (toHome === true) {
@@ -79,7 +84,8 @@ class NewQuestion extends Component {
 function mapStateToProps({ authedUser }) {
     return {
         authedUser,
-        isLoggedIn: authedUser !== null
+        isLoggedIn: authedUser !== null,
+        afterPath: '/add'
     }
 }
 

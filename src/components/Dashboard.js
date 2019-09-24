@@ -62,7 +62,7 @@ function mapStateToProps({ questions, authedUser, users }) {
     return {
         unansweredQuestionIds: sortedQuestionIDs.filter(id => [...questions[id].optionOne.votes, ...questions[id].optionTwo.votes].includes(authedUser) === false),
         answeredQuestionIds: sortedQuestionIDs.filter(id => [...questions[id].optionOne.votes, ...questions[id].optionTwo.votes].includes(authedUser)),
-        isLoggedIn: authedUser !== null
+        isLoggedIn: authedUser !== null,
     }
 }
 

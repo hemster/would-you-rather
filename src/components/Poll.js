@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 
 class Poll extends Component {
     state = {
@@ -36,11 +37,22 @@ class Poll extends Component {
             opt1VotesP,
             opt2Votes,
             opt2VotesP,
-            totalVotes 
+            totalVotes,
+            isLoggedIn,
+            afterPath
         } = this.props
 
+        if (!isLoggedIn) {
+            return <Redirect
+                to={{
+                    pathname: "/login",
+                    state: { afterPath: afterPath }
+                }}
+            />
+        }
+
         if (question === null) {
-            return <p>This question doesn't existd</p>
+            return <h1 className='center'>This question doesn't existd</h1>
         }
 
         const {
@@ -166,7 +178,9 @@ function mapStateToProps({ users, questions, authedUser }, props) {
         opt1Votes,
         opt1VotesP,
         opt2Votes,
-        opt2VotesP
+        opt2VotesP,
+        isLoggedIn: authedUser !== null,
+        afterPath: `/questions/${question_id}`
     }
 }
 

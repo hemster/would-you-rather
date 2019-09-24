@@ -11,6 +11,7 @@ class Nav extends Component {
 
   render() {
     const { user } = this.props
+    
     return (
       <nav className='nav'>
         <ul>
@@ -57,7 +58,6 @@ class Nav extends Component {
 
 
 function mapStateToProps({ users, authedUser }) {
-  console.log(authedUser)
   return {
     user: authedUser === null ? null : users[authedUser]
   }
