@@ -25,20 +25,8 @@ class NewQuestion extends Component {
         }))
     }
 
-    handleOpt1Change = (e) => {
-        const option1Text = e.target.value
-
-        this.setState(() => ({
-            option1Text
-        }))
-    }
-
-    handleOpt2Change = (e) => {
-        const option2Text = e.target.value
-
-        this.setState(() => ({
-            option2Text
-        }))
+    handleOptionChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
     }
 
     render() {
@@ -63,7 +51,7 @@ class NewQuestion extends Component {
                     <textarea
                         placeholder="Option 1"
                         value={option1Text}
-                        onChange={this.handleOpt1Change}
+                        onChange={this.handleOptionChange}
                         className='textarea'
                         maxLength={280}
                     />
@@ -71,7 +59,7 @@ class NewQuestion extends Component {
                     <textarea
                         placeholder="Option 2"
                         value={option2Text}
-                        onChange={this.handleOpt2Change}
+                        onChange={this.handleOptionChange}
                         className='textarea'
                         maxLength={280}
                     />
