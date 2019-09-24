@@ -20,7 +20,8 @@ class NewQuestion extends Component {
 
         this.setState(() => ({
             option1Text: '',
-            option2Text: ''
+            option2Text: '',
+            toHome: true
         }))
     }
 
