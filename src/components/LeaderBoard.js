@@ -42,11 +42,7 @@ function mapStateToProps({ users, authedUser }) {
             createCount,
             totalScore
         }
-    }).sort((a, b) => {
-        if (a.totalScore > b.totalScore) return -1;
-        if (a.totalScore < b.totalScore) return 1;
-        return 0;
-    })
+    }).sort((a, b) => b.totalScore - a.totalScore);
 
     return {
         rank,
