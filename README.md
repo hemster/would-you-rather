@@ -8,6 +8,7 @@ It's a web app build with React & Redux. It lets a user play the “Would You Ra
 
 * clone the Project - `git@github.com:hemster/would-you-rather.git`
 * install the dependencies - `npm install`
+* start the project - `npm start`
 
 ## Contributing
 
