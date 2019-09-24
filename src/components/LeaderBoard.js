@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import BoardCard from './BoardCard';
 
 class LeaderBoard extends Component {
     render() {
-        const { rank } = this.props;
+        const { rank, isLoggedIn } = this.props;
+
+        if (!isLoggedIn) {
+            return <Redirect to='/login' />
+        }
+
         return (
             <div>
                 <ul className='dashboard-list'>
@@ -20,7 +26,7 @@ class LeaderBoard extends Component {
     }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
     const rank = Object.keys(users).map((id) => {
         const user = users[id]
         const name = user.name
@@ -43,7 +49,8 @@ function mapStateToProps({ users }) {
     })
 
     return {
-        rank
+        rank,
+        isLoggedIn: authedUser !== null
     }
 }
 

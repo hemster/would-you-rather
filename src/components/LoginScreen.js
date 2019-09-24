@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser';
+import { Redirect } from 'react-router-dom'
 
 class LoginScreen extends Component {
     state = {
         selectedUserID: this.props.users[0].id,
+        toHome: false
     }
     
     handleChange = (e) => {
@@ -16,11 +18,18 @@ class LoginScreen extends Component {
 
     handleLogin = () => {
         this.props.dispatch(setAuthedUser(this.state.selectedUserID))
+        this.setState(() => ({
+            toHome: true
+        }))
     }
 
     render() {
-        const { selectedUserID } = this.state;
+        const { selectedUserID, toHome } = this.state;
         const { users } = this.props;
+
+        if (toHome === true) {
+            return <Redirect to='/' />
+        }
 
         return (
                 <div className='new-question'>

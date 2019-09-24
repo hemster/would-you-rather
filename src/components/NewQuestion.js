@@ -43,6 +43,12 @@ class NewQuestion extends Component {
     render() {
         const { toHome, option1Text, option2Text } = this.state
 
+        const { isLoggedIn } = this.props;
+
+        if (!isLoggedIn) {
+            return <Redirect to='/login' />
+        }
+
         if (toHome === true) {
             return <Redirect to='/' />
         }
@@ -82,7 +88,8 @@ class NewQuestion extends Component {
 
 function mapStateToProps({ authedUser }) {
     return {
-        authedUser
+        authedUser,
+        isLoggedIn: authedUser !== null
     }
 }
 
