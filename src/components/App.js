@@ -12,7 +12,7 @@ import LoginScreen from "./LoginScreen"
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.dispatch(handleInitialData())
+    this.handleInitialData()
   }
 
   render() {
@@ -44,4 +44,10 @@ function mapStateToProps({ users }) {
   }
 }
 
-export default connect(mapStateToProps)(App)
+function mapDispatchToProps(dispatch) {
+  return ({
+    handleInitialData: () => { dispatch(handleInitialData()) }
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

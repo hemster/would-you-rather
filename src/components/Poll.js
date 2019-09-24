@@ -11,9 +11,9 @@ class Poll extends Component {
         e.preventDefault()
 
         const { selectedOption } = this.state
-        const { dispatch, id } = this.props
+        const { id, handleAnswerQuestion} = this.props
 
-        dispatch(handleAnswerQuestion(id, selectedOption))
+        handleAnswerQuestion(id, selectedOption)
 
         this.setState(() => ({
             hasAnswered: true,
@@ -170,4 +170,12 @@ function mapStateToProps({ users, questions, authedUser }, props) {
     }
 }
 
-export default connect(mapStateToProps)(Poll)
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        handleAnswerQuestion: (id, selectedOption) => {
+            dispatch(handleAnswerQuestion(id, selectedOption))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Poll)

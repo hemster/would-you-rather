@@ -17,7 +17,7 @@ class LoginScreen extends Component {
     }
 
     handleLogin = () => {
-        this.props.dispatch(setAuthedUser(this.state.selectedUserID))
+        this.props.setAuthedUser(this.state.selectedUserID)
         this.setState(() => ({
             toHome: true
         }))
@@ -49,11 +49,16 @@ class LoginScreen extends Component {
 }
 
 function mapStateToProps({ authedUser, users }) {
-
     return {
         isLoggedIn: authedUser !== null,
         users: Object.values(users)
     }
 }
 
-export default connect(mapStateToProps)(LoginScreen)
+function mapDispatchToProps(dispatch) {
+    return ({
+        setAuthedUser: (selectedUserID) => { dispatch(setAuthedUser(selectedUserID)) }
+    })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

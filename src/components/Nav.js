@@ -6,7 +6,7 @@ import { logout } from '../actions/authedUser';
 class Nav extends Component {
 
   handleLogout = () => {
-    this.props.dispatch(logout())
+    this.props.logout()
   }
 
   render() {
@@ -63,4 +63,10 @@ function mapStateToProps({ users, authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(Nav)
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    logout: () => { dispatch(logout()) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)
