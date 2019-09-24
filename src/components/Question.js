@@ -2,9 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 
-const Question = () => { // insert props as arguments here if any
-    const { author, question, id } = this.props
-
+const Question = ({ author, question, id }) => {
     if (question === null) {
         return (<p>This question doesn't existd</p>)
     }

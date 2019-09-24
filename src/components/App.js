@@ -12,7 +12,7 @@ import LoginScreen from "./LoginScreen"
 
 class App extends React.Component {
   componentDidMount() {
-    this.handleInitialData()
+    this.props.handleInitialData()
   }
 
   render() {

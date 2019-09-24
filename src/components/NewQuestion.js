@@ -14,9 +14,8 @@ class NewQuestion extends Component {
         e.preventDefault()
 
         const { option1Text, option2Text } = this.state
-        const { dispatch } = this.props
 
-        dispatch(handleAddQuestion(option1Text, option2Text))
+        this.props.handleAddQuestion(option1Text, option2Text)
 
         this.setState(() => ({
             option1Text: '',
@@ -54,6 +53,7 @@ class NewQuestion extends Component {
                         onChange={this.handleOptionChange}
                         className='textarea'
                         maxLength={280}
+                        name='option1Text'
                     />
                     <h3 className='center'>or</h3>
                     <textarea
@@ -62,6 +62,7 @@ class NewQuestion extends Component {
                         onChange={this.handleOptionChange}
                         className='textarea'
                         maxLength={280}
+                        name='option2Text'
                     />
                     <button
                         className='btn'
@@ -82,4 +83,12 @@ function mapStateToProps({ authedUser }) {
     }
 }
 
-export default connect(mapStateToProps)(NewQuestion)
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        handleAddQuestion: (option1Text, option2Text) => {
+            dispatch(handleAddQuestion(option1Text, option2Text))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewQuestion)
