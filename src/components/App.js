@@ -28,7 +28,7 @@ class App extends React.Component {
                 <Route path='/' exact component={Dashboard} />
                 <Route path='/questions/:question_id' component={Poll} />
                 <Route path='/add' component={NewQuestion} />
-                <Route path='/board' component={LeaderBoard} />
+                <Route path='/leaderboard' component={LeaderBoard} />
                 <Route path='/login' component={LoginScreen} />
               </div>}
           </div>
