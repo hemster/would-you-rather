@@ -126,8 +126,8 @@ class Poll extends Component {
 }
 
 function mapStateToProps({ users, questions, authedUser }, props) {
-    const { id } = props.match.params
-    const question = questions[id];
+    const { question_id } = props.match.params
+    const question = questions[question_id];
     const author = users[question.author];
 
     const votes = [...question.optionOne.votes, ...question.optionTwo.votes]
@@ -149,7 +149,7 @@ function mapStateToProps({ users, questions, authedUser }, props) {
         question: question,
         author: author,
         hasAnswered,
-        id,
+        id: question_id,
         answer,
         totalVote,
         opt1Votes,

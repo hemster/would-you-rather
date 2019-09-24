@@ -30,7 +30,7 @@ class Question extends Component {
                         <h1>{name} asks:</h1>
                         <h3>Would you rather</h3>
                         <span>{optionOne.text}</span>
-                        <Link to={`/poll/${id}`}>
+                        <Link to={`/questions/${id}`}>
                             <h5 className='btn'>
                                 View Poll
                             </h5>
