@@ -33,8 +33,10 @@ class Poll extends Component {
             hasAnswered, 
             answer,
             opt1Votes,
+            opt1VotesP,
             opt2Votes,
-            totalVote 
+            opt2VotesP,
+            totalVotes 
         } = this.props
 
         if (question === null) {
@@ -72,7 +74,8 @@ class Poll extends Component {
                                 disabled
                             />
                             {`${answer === "optionOne" ? '[Your vote] ' : ''}${optionOne.text}`}
-                            <h6>{`${opt1Votes} out of ${totalVote} vote${totalVote > 1 ? 's':''}`}</h6>
+                            <h6>{`${opt1Votes} out of ${totalVotes} vote${totalVotes > 1 ? 's':''}`}</h6>
+                            <h6>{`${opt1VotesP} %`}</h6>
                         </label>
                         <label>
                             <input
@@ -84,7 +87,8 @@ class Poll extends Component {
                                 disabled
                             />
                             {`${answer === "optionTwo" ? '[Your vote] ' : ''}${optionTwo.text}`}
-                            <h6>{`${opt2Votes} out of ${totalVote} vote${totalVote > 1 ? 's' : ''}`}</h6>
+                            <h6>{`${opt2Votes} out of ${totalVotes} vote${totalVotes > 1 ? 's' : ''}`}</h6>
+                            <h6>{`${opt2VotesP} %`}</h6>
                         </label>
                     </div>
                      :
@@ -131,17 +135,21 @@ function mapStateToProps({ users, questions, authedUser }, props) {
     const author = users[question.author];
 
     const votes = [...question.optionOne.votes, ...question.optionTwo.votes]
-    const totalVote = votes.length
+    const totalVotes = votes.length
     const hasAnswered = votes.includes(authedUser)
 
     var answer = null;
     var opt1Votes = null;
+    var opt1VotesP = null;
     var opt2Votes = null;
+    var opt2VotesP = null;
     if (hasAnswered) {
         answer = question.optionOne.votes.includes(authedUser) ? 'optionOne' : 'optionTwo'
 
         opt1Votes = question.optionOne.votes.length
+        opt1VotesP = Math.round((opt1Votes / totalVotes) * 100)
         opt2Votes = question.optionTwo.votes.length
+        opt2VotesP = Math.round((opt2Votes / totalVotes) * 100)
     }
 
 
@@ -151,9 +159,11 @@ function mapStateToProps({ users, questions, authedUser }, props) {
         hasAnswered,
         id: question_id,
         answer,
-        totalVote,
+        totalVotes,
         opt1Votes,
-        opt2Votes
+        opt1VotesP,
+        opt2Votes,
+        opt2VotesP
     }
 }
 
